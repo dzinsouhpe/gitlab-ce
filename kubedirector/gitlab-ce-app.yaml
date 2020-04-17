@@ -1,0 +1,38 @@
+apiVersion: kubedirector.hpe.com/v1beta1
+kind: KubeDirectorApp
+metadata:
+  name: gitlab-ce
+spec:
+  label:
+    name: GitLab CE
+    description: GitLab Community Edition
+  distroID: dzinsou/gitlab-ce
+  version: 'latest'
+  configSchemaVersion: 7
+  services:
+  - id: ssh
+    label:
+      name: SSH
+    endpoint:
+      port: 22
+      isDashboard: false
+  - id: gitlab
+    label:
+      name: GitLab
+    endpoint:
+      port: 80
+      urlScheme: http
+      isDashboard: true
+  roles:
+  - id: gitlab
+    cardinality: "1"
+    imageRepoTag: docker.io/gitlab/gitlab-ce:latest
+  config:
+    selectedRoles:
+    - gitlab
+    roleServices:
+    - roleID: gitlab
+      serviceIDs:
+      - ssh
+      - gitlab
+  systemdRequired: false
