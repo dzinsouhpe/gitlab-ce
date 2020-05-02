@@ -6,7 +6,7 @@ spec:
   label:
     name: GitLab CE
     description: GitLab Community Edition
-  distroID: dzinsou/gitlab-ce
+  distroID: dzinsouhpe/gitlab-ce
   version: 'latest'
   configSchemaVersion: 7
   services:

@@ -1,0 +1,16 @@
+apiVersion: "kubedirector.hpe.com/v1beta1"
+kind: "KubeDirectorCluster"
+metadata:
+  name: "gitlab-ce-instance"
+spec:
+  app: gitlab-ce
+  roles:
+  - id: gitlab
+    members: 1
+    resources:
+      requests:
+        memory: "4Gi"
+        cpu: "1"
+      limits:
+        memory: "4Gi"
+        cpu: "1"
