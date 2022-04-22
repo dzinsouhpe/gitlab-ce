@@ -9,8 +9,8 @@
 #docker build -t dzinsouhpe/gitlab-ce:7.9.2009 .
 #docker push dzinsouhpe/centos:7.9.2009
 
-docker build -t dzinsouhpe/gitlab-ce:latest .
-docker push dzinsouhpe/gitlab-ce:latest
+docker build -t dzinsouhpe/gitlab-runner:python3 .
+docker push dzinsouhpe/gitlab-runner:python3
 
 # Delete temporary archive
 #rm -rf ./appconfig.tgz
