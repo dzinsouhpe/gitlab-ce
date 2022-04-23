@@ -1,10 +1,10 @@
 apiVersion: "kubedirector.hpe.com/v1beta1"
 kind: "KubeDirectorCluster"
 metadata: 
-  name: "python3-runners"
+  name: "python3-cpu-runner"
 #  namespace: "" # Provide namespace if running from Ezmeral UI
   labels: 
-    description: "python3-runners"
+    description: "python3-cpu-runner"
 spec: 
   app: "gitlab-runner"
   namingScheme: "CrNameRole"
@@ -12,8 +12,8 @@ spec:
   connections: 
     secrets: 
       - hpecp-ext-auth-secret
-    clusters:
-      - gitlab-ce
+#    clusters:
+#      - gitlab-ce # Uncomment this line only if GitLab KD cluster is in the same tenant and is name gitlab-ce
   roles: 
     - 
       id: "gitlab-runner"
@@ -29,5 +29,7 @@ spec:
           memory: "2Gi"
           nvidia.com/gpu: "0"
       env:
+        - name: CI_SERVER_URL
+          value: XXXXXXXXXX # Provide Gitlab URL here
         - name: REGISTRATION_TOKEN
-          value: ezmeral123 # Provide Gitlab token here
+          value: XXXXXXXXXX # Provide Gitlab token here

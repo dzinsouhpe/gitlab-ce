@@ -26,6 +26,6 @@ spec:
           memory: "12Gi"
       env:
         - name: GITLAB_ROOT_PASSWORD
-          value: ezmeral123
+          value: XXXXXXXXXX # Provide Gitlab root password here
         - name: GITLAB_OMNIBUS_CONFIG
-          value: gitlab_rails['initial_shared_runners_registration_token'] = "ezmeral123"
+          value: gitlab_rails['initial_shared_runners_registration_token'] = "XXXXXXXXXX" # Provide Gitlab shared runner token here

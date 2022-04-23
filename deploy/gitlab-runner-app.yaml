@@ -2,10 +2,15 @@ apiVersion: kubedirector.hpe.com/v1beta1
 kind: KubeDirectorApp
 metadata:
   name: gitlab-runner
+  labels:
+    kubedirector.hpe.com/AIML_category: Training
 spec:
+  categories:
+  - AIML/Training
   label:
-    name: Python3 Runner
+    name: Python3 CPU Runner
     description: Python 3.7.9 GitLab Runner based on Anaconda3
+    AIML_category: Training
   distroID: dzinsouhpe/gitlab-runner
   version: python3
   configSchemaVersion: 8
