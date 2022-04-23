@@ -1,0 +1,31 @@
+apiVersion: kubedirector.hpe.com/v1beta1
+kind: KubeDirectorApp
+metadata:
+  name: gitlab-runner
+spec:
+  label:
+    name: Python3 Runner
+    description: Python3 GitLab Runner based on Anaconda3
+  distroID: dzinsouhpe/gitlab-runner
+  version: python3
+  configSchemaVersion: 8
+  services:
+  - id: prometheus
+    label:
+      name: Prometheus metrics HTTP server
+    endpoint:
+      port: 80
+      urlScheme: http
+      isDashboard: true
+  roles:
+  - id: gitlab-runner
+    cardinality: 1+
+    imageRepoTag: dzinsouhpe/gitlab-runner:python3
+  config:
+    selectedRoles:
+    - gitlab-runner
+    roleServices:
+    - roleID: gitlab-runner
+      serviceIDs:
+      - prometheus
+  systemdRequired: false

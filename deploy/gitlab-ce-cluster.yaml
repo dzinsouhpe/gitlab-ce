@@ -1,16 +1,26 @@
 apiVersion: "kubedirector.hpe.com/v1beta1"
 kind: "KubeDirectorCluster"
-metadata:
-  name: "gitlab-ce-instance"
-spec:
-  app: gitlab-ce
-  roles:
-  - id: gitlab
-    members: 1
-    resources:
-      requests:
-        memory: "4Gi"
-        cpu: "1"
-      limits:
-        memory: "4Gi"
-        cpu: "1"
+metadata: 
+  name: "gitlab-ce"
+#  namespace: ""
+  labels: 
+    description: "gitlab-ce"
+spec: 
+  app: "gitlab-ce"
+  namingScheme: "CrNameRole"
+  appCatalog: "local"
+  connections: 
+    secrets: 
+      - hpecp-ext-auth-secret
+  roles: 
+    - 
+      id: "gitlab"
+      members: 1
+      serviceAccountName: "ecp-tenant-member-sa"
+      resources: 
+        requests: 
+          cpu: "1"
+          memory: "4Gi"
+        limits: 
+          cpu: "2"
+          memory: "12Gi"

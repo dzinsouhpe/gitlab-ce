@@ -6,16 +6,10 @@ spec:
   label:
     name: GitLab CE
     description: GitLab Community Edition
-  distroID: dzinsouhpe/gitlab-ce
-  version: 'latest'
-  configSchemaVersion: 7
+  distroID: dzinsou/gitlab-ce
+  version: 14.10.0-ce.0
+  configSchemaVersion: 8
   services:
-  - id: ssh
-    label:
-      name: SSH
-    endpoint:
-      port: 22
-      isDashboard: false
   - id: gitlab
     label:
       name: GitLab
@@ -26,13 +20,12 @@ spec:
   roles:
   - id: gitlab
     cardinality: "1"
-    imageRepoTag: docker.io/gitlab/gitlab-ce:latest
+    imageRepoTag: gitlab/gitlab-ce:14.10.0-ce.0
   config:
     selectedRoles:
     - gitlab
     roleServices:
     - roleID: gitlab
       serviceIDs:
-      - ssh
       - gitlab
   systemdRequired: false
