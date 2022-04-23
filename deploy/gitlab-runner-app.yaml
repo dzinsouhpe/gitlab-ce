@@ -21,6 +21,9 @@ spec:
   - id: gitlab-runner
     cardinality: "1+"
     imageRepoTag: dzinsouhpe/gitlab-runner:python3.9.7
+    configPackage:
+      packageURL: file:///opt/configscripts/appconfig.tgz
+      useNewSetupLayout: true
   config:
     selectedRoles:
     - gitlab-runner

@@ -37,9 +37,3 @@ else
 fi
 
 source ${CONFIG_BASE_DIR}/macros.sh
-
-if [[ $(bdvcli -g connections.secrets | grep -i "extAuth") == "extAuth" ]]; then
-   #Update sssd conf file and start sssd service
-   log_exec python ${CONFIG_BASE_DIR}/auth.py
-fi
-
