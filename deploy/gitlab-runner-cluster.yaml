@@ -21,15 +21,15 @@ spec:
       serviceAccountName: "ecp-tenant-member-sa"
       resources: 
         requests: 
-          cpu: "0.5"
-          memory: "1Gi"
+          cpu: "1"
+          memory: "4Gi"
           nvidia.com/gpu: "0"
         limits: 
-          cpu: "1"
-          memory: "2Gi"
+          cpu: "2"
+          memory: "10Gi"
           nvidia.com/gpu: "0"
       env:
         - name: CI_SERVER_URL
-          value: XXXXXXXXXX # Provide Gitlab URL here
+          value: XXXXXXXXXX # Provide Gitlab URL here http://gitlab.example.com
         - name: REGISTRATION_TOKEN
           value: XXXXXXXXXX # Provide Gitlab token here

@@ -5,7 +5,8 @@ RUN apt-get update && \
 
 RUN curl -LJO "https://gitlab-runner-downloads.s3.amazonaws.com/latest/deb/gitlab-runner_amd64.deb" && \
     dpkg -i gitlab-runner_amd64.deb && \
-    rm -rf gitlab-runner_amd64.deb
+    rm -rf gitlab-runner_amd64.deb && \
+    chown -R gitlab-runner:gitlab-runner /opt/conda/
 
 COPY appconfig.tgz /opt/configscripts/appconfig.tgz
 
