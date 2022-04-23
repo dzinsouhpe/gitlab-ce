@@ -38,21 +38,24 @@ fi
 
 source ${CONFIG_BASE_DIR}/macros.sh
 
-if [[ -z "${GITLAB_URL}" ]]; then
-    echo "GITLAB_URL not provided. We will check if tenant has gitlab-ce deployed."
+if [[ -z "${CI_SERVER_URL}" ]]; then
+    echo "CI_SERVER_URL not provided. We will check if tenant has gitlab-ce deployed."
     
     if [[ $(bdvcli -g connections.clusters | grep -i "gitlab-ce") == "gitlab-ce" ]]; then
-        echo "Found tenant gitlab-ce. We will retrieve GITLAB_URL from this instance."
-        GITLAB_URL=$(bdvcli -g connections.clusters.gitlab-ce.services.gitlab.1.gitlab.endpoints)
+        echo "Found tenant gitlab-ce. We will retrieve CI_SERVER_URL from this instance."
+        CI_SERVER_URL=$(bdvcli -g connections.clusters.gitlab-ce.services.gitlab.1.gitlab.endpoints)
     else
-        echo "GITLAB_URL not found. Exit with error code 101."
+        echo "CI_SERVER_URL not found. Exit with error code 101."
         exit 101
     fi
 fi
-echo "GITLAB_URL found: [${GITLAB_URL}]."
+echo "CI_SERVER_URL found: [${CI_SERVER_URL}]."
 
-if [[ -z "${GITLAB_TOKEN}" ]]; then
-    echo "GITLAB_TOKEN not provided. Exit with error code 102."
+if [[ -z "${REGISTRATION_TOKEN}" ]]; then
+    echo "REGISTRATION_TOKEN not provided. Exit with error code 102."
     exit 102
 fi
-echo "GITLAB_TOKEN found."
+echo "REGISTRATION_TOKEN found."
+
+gitlab-runner start
+gitlab-runner register --non-interactive

@@ -1,4 +1,3 @@
----
 apiVersion: "kubedirector.hpe.com/v1beta1"
 kind: "KubeDirectorCluster"
 metadata: 
@@ -29,3 +28,6 @@ spec:
           cpu: "1"
           memory: "2Gi"
           nvidia.com/gpu: "0"
+      env:
+        - name: REGISTRATION_TOKEN
+          value: XXXXXXXXXXX # Provide Gitlab token here
