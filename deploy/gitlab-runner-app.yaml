@@ -5,7 +5,7 @@ metadata:
 spec:
   label:
     name: Python3 Runner
-    description: Python3 GitLab Runner based on Anaconda3
+    description: Python 3.7.9 GitLab Runner based on Anaconda3
   distroID: dzinsouhpe/gitlab-runner
   version: python3
   configSchemaVersion: 8
@@ -19,8 +19,8 @@ spec:
       isDashboard: true
   roles:
   - id: gitlab-runner
-    cardinality: 1+
-    imageRepoTag: dzinsouhpe/gitlab-runner:python3
+    cardinality: "1+"
+    imageRepoTag: dzinsouhpe/gitlab-runner:python3.9.7
   config:
     selectedRoles:
     - gitlab-runner
