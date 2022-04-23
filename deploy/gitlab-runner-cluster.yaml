@@ -30,4 +30,4 @@ spec:
           nvidia.com/gpu: "0"
       env:
         - name: REGISTRATION_TOKEN
-          value: XXXXXXXXXXX # Provide Gitlab token here
+          value: ezmeral123 # Provide Gitlab token here
