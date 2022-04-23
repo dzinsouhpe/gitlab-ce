@@ -50,6 +50,7 @@ if [[ -z "${CI_SERVER_URL}" ]]; then
     fi
 fi
 echo "CI_SERVER_URL found: [${CI_SERVER_URL}]."
+export CI_SERVER_URL=${CI_SERVER_URL}
 
 if [[ -z "${REGISTRATION_TOKEN}" ]]; then
     echo "REGISTRATION_TOKEN not provided. Exit with error code 102."
@@ -58,4 +59,4 @@ fi
 echo "REGISTRATION_TOKEN found."
 
 gitlab-runner start
-gitlab-runner register --non-interactive
+gitlab-runner register --non-interactive --executor shell
