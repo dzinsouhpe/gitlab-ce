@@ -37,3 +37,22 @@ else
 fi
 
 source ${CONFIG_BASE_DIR}/macros.sh
+
+if [[ -z "${GITLAB_URL}" ]]; then
+    echo "GITLAB_URL not provided. We will check if tenant has gitlab-ce deployed."
+    
+    if [[ $(bdvcli -g connections.clusters | grep -i "gitlab-ce") == "gitlab-ce" ]]; then
+        echo "Found tenant gitlab-ce. We will retrieve GITLAB_URL from this instance."
+        GITLAB_URL=$(bdvcli -g connections.clusters.gitlab-ce.services.gitlab.1.gitlab.endpoints)
+    else
+        echo "GITLAB_URL not found. Exit with error code 101."
+        exit 101
+    fi
+fi
+echo "GITLAB_URL found: [${GITLAB_URL}]."
+
+if [[ -z "${GITLAB_TOKEN}" ]]; then
+    echo "GITLAB_TOKEN not provided. Exit with error code 102."
+    exit 102
+fi
+echo "GITLAB_TOKEN found."
