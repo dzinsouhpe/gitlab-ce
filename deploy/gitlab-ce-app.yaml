@@ -21,6 +21,10 @@ spec:
   - id: gitlab
     cardinality: "1"
     imageRepoTag: gitlab/gitlab-ce:14.10.0-ce.0
+    persistDirs:
+    - /var/opt/gitlab
+    - /var/log/gitlab
+    - /etc/gitlab
   config:
     selectedRoles:
     - gitlab
