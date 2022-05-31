@@ -58,5 +58,12 @@ if [[ -z "${REGISTRATION_TOKEN}" ]]; then
 fi
 echo "REGISTRATION_TOKEN found."
 
+echo "concurrent = 1" > /etc/gitlab-runner/config.toml
+echo "check_interval = 0" >> /etc/gitlab-runner/config.toml
+echo "listen_address = \":80\"" >> /etc/gitlab-runner/config.toml
+echo "" >> /etc/gitlab-runner/config.toml
+echo "[session_server]" >> /etc/gitlab-runner/config.toml
+echo "  session_timeout = 1800" >> /etc/gitlab-runner/config.toml
+
 gitlab-runner start
-gitlab-runner register --non-interactive --executor shell
+gitlab-runner register --non-interactive --executor shell --tag-list ezmeral,gpu
